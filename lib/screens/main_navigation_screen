@@ -1,0 +1,82 @@
+import 'package:c_wallet/screens/carte_screen.dart';
+import 'package:c_wallet/screens/home_screen.dart';
+import 'package:c_wallet/screens/stats_sceen.dart';
+import 'package:c_wallet/screens/transaction_screen.dart';
+import 'package:c_wallet/utils/my_colors.dart';
+import 'package:flutter/material.dart';
+
+class MainNavigationScreen extends StatefulWidget {
+  MainNavigationScreen({Key key}) : super(key: key);
+
+  @override
+  _MainNavigationScreenState createState() => _MainNavigationScreenState();
+}
+
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+
+
+   int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final _bottomTabs = [
+    HomeScreen(),
+    CarteScreen(),
+    TransactionScreen(),
+    LineChartSample2(),
+    // Scaffold(body: Center(child: Text('profile'),)),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _bottomTabs[_selectedIndex],
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: MyColors.bodyColor
+        ),
+        child: BottomNavigationBar( 
+          iconSize: 20,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          selectedItemColor: MyColors.primary,
+          showUnselectedLabels: true,
+          
+          unselectedItemColor: Colors.grey,
+          // fixedColor: Colors.green[600],
+          onTap: _onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: 'Solde',
+            ),
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.credit_card_rounded),
+              label: 'Mes cartes'
+            ),
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.transform_outlined),
+              label: 'Transactions'
+            ),
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bar_chart),
+              label: 'Statistique'
+            ),
+
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.person_outline),
+            //   label: 'Profile'
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+}

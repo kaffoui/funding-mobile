@@ -1,0 +1,467 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:lisocash/screens/transfert/contacts_screen.dart';
+
+import '../utils/my_colors.dart';
+import '../widgets/badge.dart';
+
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  void _bottomSheetAction(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15)
+          )
+        ),
+        builder: (BuildContext context) {
+          return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+              Container(
+                width: 40,
+                height: 2.6,
+                color: Colors.grey,
+              ),
+              const SizedBox(height: 10,),
+              const Text(
+                'Tansfert vers',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold, 
+                  fontSize: 17
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+
+              const Divider(),
+
+              buildListTile('Un compte lisocah'),
+              // buildListTile('Moov Flooz Money'),
+              buildListTile('MTN Mobile Money'),
+              buildListTile('Orange Money')
+              
+            ]),
+          );
+        }
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: MyColors.primary
+      ),
+
+      child: Scaffold(
+        // key: _keyScaffold,
+        backgroundColor: MyColors.bodyColor,
+        // appBar: AppBar(
+        //   elevation: 0,
+        //   backgroundColor: MyColors.bodyColor,
+        //   title: Text(
+        //     'Mes cartes',
+        //     style: TextStyle(
+        //       fontFamily: 'CenturyGothic',
+        //       color: Colors.black,
+        //       fontSize: 17.2,
+        //       fontWeight: FontWeight.bold
+        //     ),
+        //   ),
+        //   leading: SizedBox(width: 0,) ,
+        //   centerTitle: true,
+          
+        //   actions: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(right: 8.0),
+        //       child: IconButton(
+        //         icon: Icon( //add_circle_outline_outlined
+        //           Icons.person_pin,
+        //           color: MyColors.primary,
+        //           size: 34,
+        //         ),
+
+        //         onPressed: () {
+        //           Navigator.push(
+        //             context, 
+        //             MaterialPageRoute(
+        //               builder: (context) => WelcomeScreen()
+        //             )
+        //           );
+        //         },
+        //       ),
+        //     )
+        //   ],
+        // ),
+        // drawer: MainDrawer(),
+
+        body: SafeArea(
+          child: Column(
+            children: [
+              
+              // SizedBox(
+              //   height: 240,
+              //   child: ListView(
+              //     scrollDirection: Axis.horizontal,
+              //     physics: BouncingScrollPhysics(),
+              //     children: [
+              //       CardItem(),
+              //       CardItem(),
+              //     ],
+              //   ),
+              // ),
+
+              Container(
+                decoration: const BoxDecoration(
+                  color: MyColors.primary,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RichText(
+                            text: const TextSpan(
+                              style: TextStyle(
+                                fontFamily: 'CenturyGothic',
+                                  fontSize: 20,
+                                  color: MyColors.white
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'LISO',
+                                ),
+
+                                TextSpan(
+                                  text: ' CASH',
+                                  style: TextStyle(fontWeight: FontWeight.bold)
+                                )
+                              ]
+                            ),
+                          ),
+                          
+
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.person_outline_rounded,
+                                  color: MyColors.white,
+                                  size: 30,
+                                ),
+
+                                onPressed: () {
+                                  // Navigator.push(
+                                  //     context, 
+                                  //     MaterialPageRoute(
+                                  //       builder: (context) => ProfileScreen()
+                                  //     )
+                                  //   );
+                                },
+                              ),
+
+                              Badge(
+                                value: '1',
+                                color: MyColors.orange,
+                                child: IconButton(
+                                  icon: const Icon( //add_circle_outline_outlined
+                                    Icons.notifications_none,
+                                    color: MyColors.white,
+                                    size: 30,
+                                  ),
+
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //   context, 
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) => WelcomeScreen()
+                                    //   )
+                                    // );
+                                  },
+                                )
+                              ),
+                            ],
+                          )
+
+                        ],
+                      ),
+                    ),
+
+
+                    const Divider(),
+
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: const Text(
+                        'Mon solde ',
+                        style: TextStyle(
+                          color: MyColors.white
+                        ),
+                      ),
+                    ),
+                    
+
+                    Container(
+                      margin: const EdgeInsets.only(top: 5),
+                      child: const Text(
+                        '123.410 FCFA',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: MyColors.white
+                        ),
+                      ),
+                    ),
+
+                    const Divider(),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 20
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          buildActionButton('  Depôt  ', Icons.add_circle_outline),
+                          buildActionButton(
+                            'Transfert', 
+                            Icons.send_outlined, 
+                            onTap: () => _bottomSheetAction(context),
+                          ),  //_bottomSheetAction(context);
+                          buildActionButton('Retrait', Icons.arrow_circle_up_sharp),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 18,
+                  vertical: 13
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(),
+                    const SizedBox(),
+                    const Text(
+                      "Dernières Opérations", 
+                      style: TextStyle(
+                        color:Colors.black54,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14
+                      )
+                    ),
+
+                    InkWell(
+                      onTap: () {},
+                      child: const Text(
+                        'Voir +',
+                        style: TextStyle(
+                          color: MyColors.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              Expanded(
+                child: Container(
+                  color: MyColors.white,
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      buildContainer('A george evra', '20 000', '23/05/2022 - 15h16', Colors.red, Icons.arrow_upward),
+                      buildContainer('De John smith', '8 500', '25/04/2022 - 19h114', Colors.green, Icons.arrow_downward),
+                      buildContainer('De Richard eddy', '7 800', '05/07/2022 - 09h16', Colors.green, Icons.arrow_downward),
+                      buildContainer('Rechargement', '10 000', '13/10/2022 - 11h06', Colors.green, Icons.arrow_downward),
+                      buildContainer('Rétrait', '5 000', '23/03/2022 - 12h36', Colors.red, Icons.arrow_upward),
+
+                    ],
+                  ),
+                  // child: ListView.separated(
+                  //   physics: BouncingScrollPhysics(),
+                  //   itemCount: 15,
+                  //   separatorBuilder: (context, _) {
+                  //     return Container(height: 1.3, color: MyColors.bodyColor,);
+                  //   },
+
+                  //   itemBuilder: (context, _) {
+                  //     return Column(
+                  //       children: [
+                  //         buildContainer(),
+                  //       ],
+                  //     );
+                  //   },
+                  // ),
+                )
+              )
+            ],
+          ),
+        ),
+        
+      ),
+    );
+  }
+
+  InkWell buildActionButton(String title, IconData icon, {VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.black.withOpacity(0.1),
+            radius: 27,
+            child: Icon(
+              icon,
+              color: Colors.white,
+              size: 38,
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: MyColors.white
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container buildSeparator() => Container(height: 1.8, color: MyColors.primary.withOpacity(0.1),);
+
+  Widget buildContainer(String title, prix, date, Color color, IconData icon) {
+    return Container( //container
+    margin: const EdgeInsets.only(
+      bottom: 2
+    ),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Row( //1st row
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 5),child: Icon(icon, size: 18, color: color,)
+                  ),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87
+                    ),
+                  ),
+
+                  const Spacer(),
+
+                  Text(
+                    '$prix F',
+                    style: TextStyle(
+                      color: color,
+                      fontWeight: FontWeight.bold
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child:  Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '$date',
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 12
+                  ),
+                )
+              )
+            ),
+
+            const SizedBox(height: 5,),
+            buildSeparator()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildListTile(String title) {
+    return InkWell(
+      onTap: () {
+      Navigator.push(
+        context, MaterialPageRoute(builder: (context) =>  ContactsScreen()
+        )
+      );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 8.0, 
+          bottom: 0,
+          left: 10,
+          right: 10
+        ),
+        child: ListTile(
+          leading: const Icon(
+            Icons.account_balance_wallet_outlined,
+            size: 25,
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(
+              // fontWeight: FontWeight.bold,
+              color: Colors.black87
+            ),
+          ),
+
+          trailing: const Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 17,
+          ),
+        ),
+      ),
+    );
+  }
+
+}

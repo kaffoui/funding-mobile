@@ -1,0 +1,191 @@
+import 'package:c_wallet/screens/nom_prenoms_screen.dart';
+import 'package:c_wallet/utils/my_colors.dart';
+import 'package:flutter/material.dart';
+
+
+class ManWomanScreen extends StatefulWidget {
+
+  @override
+  _ManWomanScreenState createState() => _ManWomanScreenState();
+}
+
+class _ManWomanScreenState extends State<ManWomanScreen> {
+
+  @override
+   Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        brightness: Brightness.light,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back, color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        
+      ),
+
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0,top: 30),
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                      'MY CEDAICI',
+                      style: TextStyle(
+                        fontFamily: 'CenturyGothic',
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: MyColors.primary
+                      ),
+                    ),
+                ),
+              ),
+              
+
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(top: 15, left: 10),
+                child: Text(
+                  'Choisissez votre genre',
+                  style: TextStyle(
+                    fontFamily: 'CenturyGothic',
+                    fontSize: 13,
+                    // color: MyColors.primary
+                  ),
+                ),
+              ),
+
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 8,
+              ),
+
+              SizedBox(height: 50,),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Je suis',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+
+                            ),
+                          ],
+                        )
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        // width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: MyColors.primary
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(29))
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(29),
+                          child: FlatButton(
+                            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                            color: MyColors.white,
+                            onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => NomPrenomsScreen()
+                                )
+                              );
+                            },
+                            child: Text(
+                              'Un Homme',
+                              style: TextStyle(color: MyColors.primary),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                       
+                    ],
+                  ),
+
+                  Column(
+                    children: [
+                       Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Je suis',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+
+                            ),
+                          ],
+                        )
+                      ), 
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        // width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.pink
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(29))
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(29),
+                          child: FlatButton(
+                            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                            color: MyColors.white,
+                            onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => NomPrenomsScreen()
+                                )
+                              );
+                            },
+                            child: Text(
+                              'Une Femme',
+                              style: TextStyle(color: Colors.pink),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                       
+                    ],
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 40,),
+
+              
+
+              
+
+              SizedBox(
+                height: 20.0,
+              ),
+            ],
+        
+          )
+        ),
+      ),
+    );
+  }
+}
+
+
