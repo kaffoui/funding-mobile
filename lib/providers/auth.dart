@@ -70,7 +70,7 @@ class AuthProvider with ChangeNotifier {
       // }
 
     } catch (e) {
-      debugPrint("###### e $e");
+      debugPrint("###### e $e")
     }
 
     // return error;
